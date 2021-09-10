@@ -13,25 +13,34 @@ const modalcontent = document.querySelector(".content");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalCloseBtn=document.querySelector(".bground .close");
-// const submitBtn=document.querySelector()
+const submiBtn=document.querySelector(".btn-submit");
+
+let verifs=[
+  {id:"first",error:"Veuillez entrer 2 caractères ou plus pour le champ du prénom."},
+  {id:"last",error:"Veuillez entrer 2 caractères ou plus pour le champ du nom."},
+  {id:"email",error:"Veuillez entrer une adresse email valide."},
+  {id:"birthdate",error:"Vous devez entrer votre date de naissance."},
+  {id:"quantity",error:"Vous devez préciser à combien de tournoi vous avez participé."},
+  {id:"location1",error:"Vous devez préciser votre location."},
+  {id:"checkbox1",error:"Vous devez vérifier que vous acceptez les termes et conditions."},
+]
 
 //launch modal form
 modalBtn.forEach((btn) => btn.addEventListener("click", ()=>{
-  // modalbg.style.display = "block";
-  console.log("oe")
   modalbg.classList.add("visible");
 }));
 
-
 //close modal form
 modalCloseBtn.addEventListener("click",()=>{
-  // modalcontent.style.animationName="modalclose";
-  // modalcontent.style.animationFillMode="forward";
-  // setTimeout(() => {
-  //   modalbg.style.display="none";
-  //   modalcontent.style.animationName="modalopen";
-  // }, 750);
   modalbg.classList.remove("visible");
 })
 
-
+//form submit
+submiBtn.addEventListener("click", function (event) {
+  //verification of each input
+  verifs.forEach(verif => {
+    let e=document.getElementById(verif.id);
+    if(!e.validity.valid)console.log(verif.error)
+  });
+  event.preventDefault()
+});
