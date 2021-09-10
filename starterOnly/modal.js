@@ -15,6 +15,7 @@ const formData = document.querySelectorAll(".formData");
 const modalCloseBtn=document.querySelector(".bground .close");
 const submiBtn=document.querySelector(".btn-submit");
 const form=document.getElementById("reserve");
+const success=document.querySelector('.success');
 
 let verifs=[
   {id:"first",error:"Veuillez entrer 2 caractères ou plus pour le champ du prénom."},
@@ -41,10 +42,13 @@ submiBtn.addEventListener("click", function (event) {
   //verification of each input
   verifs.forEach(verif => {
     let validity=document.getElementById(verif.id).validity.valid;
-    let erreur=validity ? "" : verif.error;
-    document.querySelector(`#${verif.id} ~ .error`).innerHTML=erreur;
+    let error=validity ? "" : verif.error;
+    document.querySelector(`#${verif.id} ~ .error`).innerHTML=error;
 
   });
-  // form.checkValidity();
+  if(form.checkValidity()){
+    success.style.display="inline-block";
+    form.style.display="none";
+  }
   event.preventDefault()
 });
