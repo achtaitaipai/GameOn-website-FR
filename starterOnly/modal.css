@@ -158,7 +158,7 @@ main {
 }
 
 .bground {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -167,20 +167,32 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+  opacity: 0;
+  transition: opacity var(--modal-duration);
+  pointer-events: none;
+}
+.visible{
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .content {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
-  animation-name: modalopen;
-  animation-duration: var(--modal-duration);
+  /* animation-name: modalopen;
+  animation-duration: var(--modal-duration); */
   background: #232323;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   color: #fff;
   padding-top: 10px;
+  transform: translateY(-150px);
+  transition: transform var(--modal-duration);
+}
+.visible .content{
+  transform: translateY(0);
 }
 
 .content--close{
@@ -520,25 +532,6 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
-  }
-}
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes modalclose {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-150px);
   }
 }
 
