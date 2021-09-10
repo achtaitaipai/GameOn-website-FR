@@ -53,7 +53,7 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form name="reserve" action="index.html" method="get">
+            <form name="reserve" action="index.html" method="get" id="reserve">
               <div class="formData">
                 <label for="first">Prénom</label><br />
                 <input
@@ -64,6 +64,7 @@
                   minlength="2"
                   required
                 /><br />
+                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="last">Nom</label><br />
@@ -75,6 +76,7 @@
                   minlength="2"
                   required
                 /><br />
+                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="email">E-mail</label><br />
@@ -85,6 +87,7 @@
                   name="email"
                   required
                 /><br />
+                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br />
@@ -95,6 +98,7 @@
                   name="birthdate"
                   required
                 /><br />
+                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="quantity"
@@ -111,6 +115,8 @@
                   value="0"
                   required
                 />
+                <br>
+                <span class="error"></span>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div class="formData">
@@ -186,6 +192,8 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <br>
+                <span class="error"></span>
               </div>
 
               <div class="formData">
@@ -207,6 +215,7 @@
                   Je Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br />
+                <span class="error"></span>
               </div>
               <input
                 class="btn-submit button"
