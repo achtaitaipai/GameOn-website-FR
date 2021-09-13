@@ -8,6 +8,6 @@ Vous avez récemment été embauché comme développeur Front-End junior dans un
 
 ## Compétences évaluées :
 
-  * Programmer en JavaScrip
+  * Programmer en JavaScript
 
 ### [Site final](https://achtaitaipai.github.io/GameOn-website-FR/)
