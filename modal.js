@@ -16,7 +16,7 @@ const modalbg = document.querySelector(".bground");
 const modalcontent = document.querySelector(".content");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalCloseBtn = document.querySelector(".bground .close");
+const modalCloseBtn = document.querySelector(".close");
 const submiBtn = document.querySelector(".btn-submit");
 const form = document.getElementById("reserve");
 const success = document.querySelector(".success");
@@ -46,25 +46,30 @@ let verifs = [
 ];
 
 /*----------------
-------EVENTS------
+FONCTIONS ANONYMES
 -----------------*/
 
 /*
-Au chargement de la page =>
-  -Définir un minimum et un maximum à l'input date de naissance (entre 5 et 120 ans)
+Définir un minimum et un maximum à l'input date de naissance (entre 5 et 120 ans)
 */
-window.addEventListener("DOMContentLoaded", () => {
+(function () {
+  let minAge=5;
+  let maxAge=120;
   const birthInput = document.getElementById("birthdate");
   let maximum = new Date();
-  maximum.setFullYear(maximum.getFullYear() - 5);
+  maximum.setFullYear(maximum.getFullYear() - minAge);
   maximum = dateToString(maximum);
   birthInput.max = maximum;
 
   let minimum = new Date();
-  minimum.setFullYear(minimum.getFullYear() - 120);
+  minimum.setFullYear(minimum.getFullYear() - maxAge);
   minimum = dateToString(minimum);
   birthInput.min = minimum;
-});
+}());
+
+/*----------------
+------EVENTS------
+-----------------*/
 
 /*
 Au clique sur l'un des boutons "je minscris" =>
@@ -80,33 +85,19 @@ modalBtn.forEach((btn) =>
 Au clique sur le bouton fermer =>
   *Faire disparaître le modal
 */
+
 modalCloseBtn.addEventListener("click", () => {
   modalbg.classList.remove("visible");
 });
 
 /*
 Au clique sur le bouton "C'est parti" =>
-  *Vérifier chaque input défini dans "verifs"
-    -en cas d'invalidité => faire apparaître l'erreur définie dans "vérifs"
-    -dans le cas contraire => Faire disparaître l'erreur potentiellement affichée
-  *Si l'ensemble du formulaire est valide => faire disparaître le formulaire et afficher le message de validation
+  lancer la vérification du formulaire
 */
-submiBtn.addEventListener("click", function (event) {
-  //verification of each input
-  verifs.forEach((verif) => {
-    let validity = document.getElementById(verif.id).validity.valid;
-    let error = validity ? "" : verif.error;
-    document.querySelector(`#${verif.id} ~ .error`).innerHTML = error;
-  });
-  if (form.checkValidity()) {
-    success.style.display = "inline-block";
-    form.style.display = "none";
-  }
-  event.preventDefault();
-});
+submiBtn.addEventListener("click", formValidation);
 
 /*----------------
-------UTILS------
+-----FONCTIONS-----
 -----------------*/
 
 // Transforme un objet date en string ayant pour format : YYYY-MM-DD
@@ -115,4 +106,29 @@ function dateToString(date) {
   let month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
   let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   return `${year}-${month}-${day}`;
+}
+
+//fonction de validation du formulaire
+function formValidation(event){
+  //verification de chaque input
+  verifs.forEach((verif) => {
+    let validity = document.getElementById(verif.id).validity.valid;
+    let error = validity ? "" : verif.error;
+    document.querySelector(`#${verif.id} ~ .error`).innerHTML = error;
+  });
+  //si le formulaire est valide
+  if (form.checkValidity()) {
+    //afficher le message de validation
+    success.style.display = "grid";
+    //transformer le bouton "c'est partit" en "fermer"
+    submiBtn.value="Fermer"
+    //suprimer l'evenement de validation du formulaire
+    submiBtn.removeEventListener("click", formValidation);
+    //fermer le modal lorsqu'on clique sur le bouton "fermer"
+    submiBtn.addEventListener("click", () => {
+      modalbg.classList.remove("visible");
+      event.preventDefault();
+    });
+  }
+  event.preventDefault();
 }
