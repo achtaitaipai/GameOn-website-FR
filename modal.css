@@ -521,7 +521,7 @@ input[data-error]::after {
   z-index: 1;
   padding: 2rem 0 0rem 4rem;
   color: white;
-  font-size: clamp(3rem,8vw + 1rem,6rem);
+  font-size: clamp(3rem,7vw + 1rem,6rem);
   font-weight: normal;
   white-space: nowrap;
   

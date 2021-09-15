@@ -1,12 +1,3 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
 /*----------------
 ----Variables--
 -----------------*/
@@ -20,6 +11,7 @@ const modalCloseBtn = document.querySelector(".close");
 const submiBtn = document.querySelector(".btn-submit");
 const form = document.getElementById("reserve");
 const success = document.querySelector(".success");
+const navBtn = document.querySelector(".main-navbar .icon");
 
 //tableau des inputs à verifier avec en id l'id de l'input et en error le texte à afficher en cas d'erreur
 let verifs = [
@@ -53,8 +45,8 @@ FONCTIONS ANONYMES
 Définir un minimum et un maximum à l'input date de naissance (entre 5 et 120 ans)
 */
 (function () {
-  let minAge=5;
-  let maxAge=120;
+  let minAge = 5;
+  let maxAge = 120;
   const birthInput = document.getElementById("birthdate");
   let maximum = new Date();
   maximum.setFullYear(maximum.getFullYear() - minAge);
@@ -65,11 +57,24 @@ Définir un minimum et un maximum à l'input date de naissance (entre 5 et 120 a
   minimum.setFullYear(minimum.getFullYear() - maxAge);
   minimum = dateToString(minimum);
   birthInput.min = minimum;
-}());
+})();
 
 /*----------------
 ------EVENTS------
 -----------------*/
+
+/*
+Au clique sur l'icone du nav' =>
+  *afficher le menu de navigation
+*/
+navBtn.addEventListener("click", () => {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+});
 
 /*
 Au clique sur l'un des boutons "je minscris" =>
@@ -109,7 +114,7 @@ function dateToString(date) {
 }
 
 //fonction de validation du formulaire
-function formValidation(event){
+function formValidation(event) {
   //verification de chaque input
   verifs.forEach((verif) => {
     let validity = document.getElementById(verif.id).validity.valid;
@@ -121,7 +126,7 @@ function formValidation(event){
     //afficher le message de validation
     success.style.display = "grid";
     //transformer le bouton "c'est partit" en "fermer"
-    submiBtn.value="Fermer"
+    submiBtn.value = "Fermer";
     //suprimer l'evenement de validation du formulaire
     submiBtn.removeEventListener("click", formValidation);
     //fermer le modal lorsqu'on clique sur le bouton "fermer"
