@@ -118,8 +118,21 @@ function formValidation(event) {
   //verification de chaque input
   verifs.forEach((verif) => {
     let validity = document.getElementById(verif.id).validity.valid;
-    let error = validity ? "" : verif.error;
-    document.querySelector(`#${verif.id} ~ .error`).innerHTML = error;
+    if (validity) {
+      document
+        .querySelector(`#${verif.id}`)
+        .parentElement.removeAttribute("data-error");
+      document
+        .querySelector(`#${verif.id}`)
+        .parentElement.removeAttribute("data-error-visible");
+    } else {
+      document
+        .querySelector(`#${verif.id}`)
+        .parentElement.setAttribute("data-error", verif.error);
+      document
+        .querySelector(`#${verif.id}`)
+        .parentElement.setAttribute("data-error-visible", true);
+    }
   });
   //si le formulaire est valide
   if (form.checkValidity()) {

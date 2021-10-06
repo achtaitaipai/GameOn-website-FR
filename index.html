@@ -65,9 +65,9 @@
                   id="first"
                   name="first"
                   minlength="2"
+                  pattern="^\S*$"
                   required
                 /><br />
-                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="last">Nom</label><br />
@@ -77,9 +77,9 @@
                   id="last"
                   name="last"
                   minlength="2"
+                  pattern="^\S*$"
                   required
                 /><br />
-                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="email">E-mail</label><br />
@@ -90,7 +90,6 @@
                   name="email"
                   required
                 /><br />
-                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br />
@@ -101,11 +100,11 @@
                   name="birthdate"
                   required
                 /><br />
-                <span class="error"></span>
               </div>
               <div class="formData">
                 <label for="quantity"
-                  >À combien de tournois GameOn avez-vous déjà participé ?</label
+                  >À combien de tournois GameOn avez-vous déjà participé
+                  ?</label
                 ><br />
                 <input
                   type="number"
@@ -117,8 +116,7 @@
                   value="0"
                   required
                 />
-                <br>
-                <span class="error"></span>
+                <br />
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div class="formData">
@@ -194,8 +192,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
-                <br>
-                <span class="error"></span>
+                <br />
               </div>
 
               <div class="formData">
@@ -217,7 +214,6 @@
                   Je Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br />
-                <span class="error"></span>
               </div>
               <input
                 class="btn-submit button"
